@@ -11,6 +11,9 @@ namespace CarsMarketMonitoringSystem.Models
         public CarsMarketDbContext()
             : base("name=CarsMarketDatabase")
         {
+           // Database.SetInitializer(
+           //     // new MigrateDatabaseToLatestVersion<CarsMarketDbContext, Configuration>());
+           //     new DropCreateDatabaseAlways<CarsMarketDbContext>());
         }
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)

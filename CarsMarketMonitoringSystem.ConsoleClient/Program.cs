@@ -14,15 +14,17 @@
         {
             var manager = new DataManager();
 
-            var mongoFiller = new MongoDbFiller(manager);
-            mongoFiller.FillDataBase();
-
-            manager.ImportDataFromMongoDb();
-            manager.ImportExelReports("../../../Sales-reports.zip");
-
+            //var mongoFiller = new MongoDbFiller(manager);
+            //mongoFiller.FillDataBase();
+            //
+           //manager.ImportDataFromMongoDb();
+           //manager.ImportExelReports("../../../Sales-reports.zip");
+            //
             var sales = manager.DatabaseContex.Sales;
             manager.ExportJSONReports(sales);
-            manager.ExportDataToMySQL(sales);
+            //manager.ExportDataToMySQL(sales);
+
+            manager.ExportPDFReports(2013, 7);
         }
     }
 }
