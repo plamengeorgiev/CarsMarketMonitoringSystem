@@ -13,30 +13,30 @@
         static void Main(string[] args)
         {
             var manager = new DataManager();
-            //DatabaseModelTest(manager);
-            //manager.ImportExelReports("../../../Sales-reports.zip");
 
-            //var mongoFiller = new MongoDbFiller(manager);
-            //mongoFiller.FillDataBase();
+            var mongoFiller = new MongoDbFiller(manager);
+            mongoFiller.FillDataBase();
 
-            //var saleOld = new Sale();
-            //    saleOld.SaleId = 1;
-            //    saleOld.CarId = 1;
-            //    saleOld.SellerId = 1;
-            //    saleOld.Price = 1300;
-            //    saleOld.Date = DateTime.Now;
-            //    manager.ExportJSONReports(new List<Sale>() { saleOld });
-
-            //var saleModel = new SaleModel();
-
-            //saleModel.SaleId = 1;
-            //saleModel.CarId = 1;
-            //saleModel.SellerId = 1;
-            //saleModel.Price = 1300;
-            //saleModel.Date = DateTime.Now;
-
-            //manager.ExportDataToMySQL(new List<SaleModel>() { saleModel });
             manager.ImportDataFromMongoDb();
+            manager.ImportExelReports("../../../Sales-reports.zip");
+
+            var sales = manager.DatabaseContex.Sales;
+            manager.ExportJSONReports(sales);
+
+            //foreach (var sale in sales)
+            //{
+            //    var saleModel = new SaleModel();
+
+            //    saleModel.SaleId = sale.SaleId;
+            //    saleModel.CarId = sale.CarId;
+            //    saleModel.SellerId = 1;
+            //    saleModel.Price = 1300;
+            //    saleModel.Date = DateTime.Now;
+
+            //    manager.ExportDataToMySQL(new List<SaleModel>() { saleModel });
+            //}
+            
+            
         }
 
         //private static void DatabaseModelTest(DataManager manager)

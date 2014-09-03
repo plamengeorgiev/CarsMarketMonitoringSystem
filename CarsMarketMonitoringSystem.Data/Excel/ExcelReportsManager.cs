@@ -32,10 +32,11 @@
                 foreach (var sale in sales)
                 {
                     this.context.Sales.Add(sale);
+                    context.SaveChanges();
                 }
             }
 
-            context.SaveChanges();
+            
         }
 
         private IEnumerable<FileInfo> GetAllFiles(string directoryPath, string fileExtension)
