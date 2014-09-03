@@ -22,16 +22,9 @@
         public void ImportData()
         {
             //this.AddExpenses();
-            //this.AddLocations();
-            //this.SaveChanges();
-            //Console.WriteLine("Locations added");
-            //this.AddManufacturers();
-            //this.SaveChanges();
-            //Console.WriteLine("Manufacturers added");
             this.AddSellers();
-            Console.WriteLine("Sellers added");
             this.AddCars();
-            Console.WriteLine("Cars added");
+
         }
 
         public void AddCars()
@@ -43,8 +36,6 @@
 
             foreach (var car in this.MongoDb.Cars.FindAll())
             {
-
-
                 if (CarsMarketDbContext.Manufacturers.FirstOrDefault(m => m.Name == car.Manufacturer) == null)
                 {
                     var newManufacturer = new Manufacturer()
@@ -56,7 +47,6 @@
                 }
 
                 var elementWithNeededId = CarsMarketDbContext.Manufacturers.FirstOrDefault(x => x.Name == car.Manufacturer);
-
 
                 this.CarsMarketDbContext.Cars.Add(new Car()
                 {
@@ -89,9 +79,6 @@
         //    }
 
         //}
-
-
-
 
         public void AddSellers()
         {

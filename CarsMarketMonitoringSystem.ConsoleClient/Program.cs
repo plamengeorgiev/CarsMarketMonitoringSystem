@@ -14,10 +14,10 @@
         {
             var manager = new DataManager();
 
-            var mongoFiller = new MongoDbFiller(manager);
-            mongoFiller.FillDataBase();
+            //var mongoFiller = new MongoDbFiller(manager);
+            //mongoFiller.FillDataBase();
 
-            manager.ImportDataFromMongoDb();
+            //manager.ImportDataFromMongoDb();
             manager.ImportExelReports("../../../Sales-reports.zip");
 
             var sales = manager.DatabaseContex.Sales;
