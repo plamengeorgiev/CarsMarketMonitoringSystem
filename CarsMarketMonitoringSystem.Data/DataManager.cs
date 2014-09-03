@@ -79,7 +79,7 @@
             jsonManager.GenerateJSONReports(sales, "../../Generated-reports");
         }
 
-        public void ExportDataToMySQL(IEnumerable<SaleModel> sales) 
+        public void ExportDataToMySQL(IEnumerable<Sale> sales) 
         {
             var sqlManager = new MySQLReportsManager();
             sqlManager.UpdateDatabase();

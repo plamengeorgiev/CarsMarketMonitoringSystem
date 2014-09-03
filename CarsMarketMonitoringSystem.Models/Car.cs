@@ -14,10 +14,10 @@
 
         public int CarId { get; set; }
         public string Model { get; set; }
-        public Nullable<int> ManufacturerId { get; set; }
-        public Nullable<int> TopSpeed { get; set; }
-        public Nullable<int> BrakeHorsePower { get; set; }
-        public Nullable<decimal> BasePrice { get; set; }
+        public int ManufacturerId { get; set; }
+        public int TopSpeed { get; set; }
+        public int BrakeHorsePower { get; set; }
+        public decimal BasePrice { get; set; }
 
         public virtual Manufacturer Manufacturer { get; set; }
         public virtual ICollection<Sale> Sales { get; set; }

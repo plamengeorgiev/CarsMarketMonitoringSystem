@@ -12,7 +12,7 @@ namespace CarsMarketMonitoringSystem.Data.MySQL
 {
     public class MySQLReportsManager
     {
-        public void AddSales(IEnumerable<SaleModel> sales)
+        public void AddSales(IEnumerable<Sale> sales)
         {
             var context = new  FluentModel();
 
@@ -26,8 +26,9 @@ namespace CarsMarketMonitoringSystem.Data.MySQL
                 tempSale.Date = sale.Date;
 
                 context.Add(tempSale);
+                context.SaveChanges();
             }
-            context.SaveChanges();
+            
         }
 
         public void UpdateDatabase()

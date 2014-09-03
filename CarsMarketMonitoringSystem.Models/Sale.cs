@@ -7,10 +7,10 @@
     public partial class Sale
     {
         public int SaleId { get; set; }
-        public Nullable<int> CarId { get; set; }
-        public Nullable<int> SellerId { get; set; }
-        public Nullable<decimal> Price { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
+        public int CarId { get; set; }
+        public int SellerId { get; set; }
+        public decimal Price { get; set; }
+        public System.DateTime Date { get; set; }
 
         public virtual Car Car { get; set; }
         public virtual Seller Seller { get; set; }

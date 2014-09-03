@@ -7,9 +7,9 @@
     public class Expense
     {
         public int ExpenseId { get; set; }
-        public Nullable<int> ManufacturerId { get; set; }
-        public Nullable<decimal> Expenses { get; set; }
-        public Nullable<System.DateTime> Month { get; set; }
+        public int ManufacturerId { get; set; }
+        public decimal Expenses { get; set; }
+        public System.DateTime Month { get; set; }
 
         public virtual Manufacturer Manufacturer { get; set; }
     }
