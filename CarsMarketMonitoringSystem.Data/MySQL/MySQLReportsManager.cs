@@ -12,10 +12,17 @@ namespace CarsMarketMonitoringSystem.Data.MySQL
 {
     public class MySQLReportsManager
     {
-        public void AddSales(IEnumerable<Sale> sales)
+        private FluentModel mySqlDbContext;
+        private CarsMarketDbContext dbContext;
+        public MySQLReportsManager(FluentModel mySqlDbContext, CarsMarketDbContext dataBaseContext)
         {
-            var context = new  FluentModel();
+            this.mySqlDbContext = mySqlDbContext;
+            this.dbContext = dataBaseContext;
+        }
 
+        public void AddSales()
+        {
+            var sales = dbContext.Sales;
             foreach (var sale in sales)
             {
                 var tempSale = new SaleModel();
@@ -25,8 +32,8 @@ namespace CarsMarketMonitoringSystem.Data.MySQL
                 tempSale.Price = sale.Price;
                 tempSale.Date = sale.Date;
 
-                context.Add(tempSale);
-                context.SaveChanges();
+                mySqlDbContext.Add(tempSale);
+                mySqlDbContext.SaveChanges();
             }
             
         }

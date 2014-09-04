@@ -74,9 +74,11 @@
     <Compile Include="Excel\FolderTraverser.cs" />
     <Compile Include="Excel\ZipManipulator.cs" />
     <Compile Include="JSON\JSONReportManager.cs" />
+    <Compile Include="JSON\JsonSale.cs" />
     <Compile Include="MongoDb\Mappings\CarMap.cs" />
     <Compile Include="MongoDb\Mappings\SellerMap.cs" />
     <Compile Include="MongoDb\MongoDbContext.cs" />
+    <Compile Include="MongoDb\MongoDbFiller.cs" />
     <Compile Include="MongoDb\MongoDbManager.cs" />
     <Compile Include="MySQL\MySQLReportsManager.cs" />
     <Compile Include="PdfReporter\PdfReporter.cs" />

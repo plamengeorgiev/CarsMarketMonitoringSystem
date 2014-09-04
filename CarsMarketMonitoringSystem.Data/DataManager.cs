@@ -7,6 +7,7 @@
     using Excel;
     using JSON;
     using MySQL;
+    using MongoDb;
     using CarsMarketMonitoringSystem.Data.PdfReporter;
     using System.Collections.Generic;
     using CarsMarketMonitoringSystem.MySqlConnector;
@@ -23,11 +24,13 @@
 
         private CarsMarketDbContext dbContext;
         private MongoDbContext mongoDbContext;
+        private FluentModel mySqlDbContext;
 
         public DataManager()
         {
             this.DatabaseContex = new CarsMarketDbContext();
             this.MongoDbContext = new MongoDbContext(ConnectionStringMongoDb, DatabaseNameMongoDb);
+            this.MySQLDbContext = new FluentModel();
         }
 
         public CarsMarketDbContext DatabaseContex 
@@ -56,9 +59,27 @@
             }
         }
 
+        public FluentModel MySQLDbContext
+        {
+            get 
+            {
+                return this.mySqlDbContext;
+            }
+            set 
+            {
+                this.mySqlDbContext = value;
+            }
+        }
+
+        public void FillMongoDatabase()
+        {
+            var mongoFiller = new MongoDbFiller(this.MongoDbContext);
+            mongoFiller.FillDataBase();
+        }
+
         public void ImportExelReports(string zipFilePath) 
         {
-            var exelManager = new ExcelReportsManager(zipFilePath, ExtractedFilesPath, this.dbContext);
+            var exelManager = new ExcelReportsManager(zipFilePath, ExtractedFilesPath, this.DatabaseContex);
             exelManager.ImportSalesReport();
         }
 
@@ -73,17 +94,17 @@
             throw new NotImplementedException();
         }
 
-        public void ExportJSONReports(IEnumerable<Sale> sales)
+        public void ExportJSONReports()
         {
-            var jsonManager = new JSONReportManager();
-            jsonManager.GenerateJSONReports(sales, "../../Generated-reports");
+            var jsonManager = new JSONReportManager(this.DatabaseContex);
+            jsonManager.GenerateJSONReports("../../Generated-reports");
         }
 
-        public void ExportDataToMySQL(IEnumerable<Sale> sales) 
+        public void ExportDataToMySQL() 
         {
-            var sqlManager = new MySQLReportsManager();
+            var sqlManager = new MySQLReportsManager(this.MySQLDbContext, this.DatabaseContex);
             sqlManager.UpdateDatabase();
-            sqlManager.AddSales(sales);
+            sqlManager.AddSales();
             
         }
 
